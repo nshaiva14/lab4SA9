@@ -7,7 +7,12 @@ const About = (props) => {
   return <div> All there is to know about me </div>;
 };
 const Welcome = (props) => {
-  return (<Counter />, <Control />);
+  return (
+    <div>
+      <Counter />
+      <Control />
+    </div>
+  );
 };
 const Test = (props) => {
   return <div> ID: {props.match.params.id} </div>;
