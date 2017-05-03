@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-
 import { fetchPosts } from '../actions';
 
 class GetPosts extends Component {
@@ -20,16 +19,18 @@ class GetPosts extends Component {
 
   render() {
     return (
-      <ul>
-        {this.props.posts.all.map(post =>
-          <li key={post.id}>
-            {post.title}
-            {post.content}
-            {post.tags}
-            {post.cover_url}
-          </li>,
-      )}
-      </ul>);
+      <div>
+        {this.props.all.map(post =>
+          <div key={post.id}>
+            <a href={`/posts/${post.id}`}>{post.title}</a>
+            <div>{post.tags}</div>
+            <div>
+              <div>{post.content}</div>
+              <div>{post.cover_url}</div>
+            </div>
+          </div>)}
+      </div>
+    );
   }
 }
 

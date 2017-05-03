@@ -56,11 +56,18 @@ class GetNewPost extends Component {
 
         <input type="text" onChange={this.onCoverURLChange} value={this.state.cover_url} />
 
-        <input type="submit" name="submit" value="Submit" />
+        <input type="submit" name="submit" value="Submit" onClick={this.handleSubmit} />
       </form>
     );
   }
 }
+//
+// const mapStateToProps = state => (
+//   {
+//     posts = state.posts;
+//
+//   }
+// );
 
 
 export default withRouter(connect(null, { createPost })(GetNewPost));

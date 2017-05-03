@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-do
 // import GetPost from '../containers/getpost';
 import GetNewPost from '../containers/getnewpost';
 import GetPosts from '../containers/getposts';
+import GetPost from '../containers/getpost';
 
-const PostC = (props) => {
-  return (
-    <div />);
-};
+
+// const PostC = (props) => {
+//   return (
+//     <div />);
+// };
 
 const App = (props) => {
   return (
@@ -17,7 +19,7 @@ const App = (props) => {
         <Switch>
           <Route exact path="/" component={GetPosts} />
           <Route path="/posts/new" component={GetNewPost} />
-          <Route path="/post/:postID" component={PostC} />
+          <Route path="/posts/:postID" component={GetPost} />
           <Route render={() => (<div>post not found </div>)} />
         </Switch>
       </div>

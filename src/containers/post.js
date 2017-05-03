@@ -27,7 +27,7 @@ class NewPost extends Component {
   // };
 
   deletePost() {
-    this.props.deletePost(this.props.fetchPost(this.props.match.params.postID, history);
+    this.props.deletePost(this.props.fetchPost(this.props.match.params.postID, this.props.history);
   };
 
 
