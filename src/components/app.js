@@ -1,53 +1,46 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
-import Counter from '../containers/counter';
-import Control from '../containers/control';
+// import GetPost from '../containers/getpost';
+import GetNewPost from '../containers/getnewpost';
+import GetPosts from '../containers/getposts';
 
-const About = (props) => {
-  return <div> All there is to know about me </div>;
-};
-const Welcome = (props) => {
+const PostC = (props) => {
   return (
-    <div>
-      <Counter />
-      <Control />
-    </div>
-  );
-};
-const Test = (props) => {
-  return <div> ID: {props.match.params.id} </div>;
-};
-const FallBack = (props) => {
-  return <div>URL Not Found</div>;
+    <div />);
 };
 
 const App = (props) => {
   return (
     <Router>
       <div>
-        <Nav />
+        <NavBar />
         <Switch>
-          <Route exact path="/" component={Welcome} />
-          <Route path="/about" component={About} />
-          <Route exact path="/test/:id" component={Test} />
-          <Route component={FallBack} />
+          <Route exact path="/" component={GetPosts} />
+          <Route path="/posts/new" component={GetNewPost} />
+          <Route path="/post/:postID" component={PostC} />
+          <Route render={() => (<div>post not found </div>)} />
         </Switch>
       </div>
     </Router>
   );
 };
 
-const Nav = (props) => {
+const NavBar = (props) => {
   return (
     <nav>
       <ul>
-        <li><NavLink to="/" exact>Home</NavLink></li>
-        <li><NavLink to="/about">About</NavLink></li>
-        <li><NavLink to="/test/id1">test id1</NavLink></li>
-        <li><NavLink to="/test/id2">test id2</NavLink></li>
+        <li><NavLink to="/" exact>All Posts</NavLink></li>
+        <li><NavLink to="/posts/new">New Post</NavLink></li>
       </ul>
     </nav>
   );
 };
+
+// componentDidMount() {
+//   firebasedb.fetchNotes((notes) => {
+//     this.setState({ notes: Immutable.Map(notes) });
+//   });
+// }
+
 
 export default App;
