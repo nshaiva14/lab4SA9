@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import marked from 'marked';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -19,16 +20,17 @@ class Posts extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.all.map(post =>
-          <div key={post.id}>
-            <a href={`/posts/${post.id}`}>{post.title}</a>
-            <div>{post.tags}</div>
-            <div>
-              <div>{post.content}</div>
-              <div>{post.cover_url}</div>
-            </div>
-          </div>)}
+      <div className="render-posts">
+        <h1 className="blog">My Blog</h1>
+        <div className="posts-render">
+          {this.props.all.map(post =>
+            <div className="post" key={post.id}>
+              <div className="flex-item"><a href={`/posts/${post.id}`}>{post.title}</a></div>
+              <div className="flex-item"><div dangerouslySetInnerHTML={{ __html: marked(post.tags || '') }} /></div>
+              <div className="flex-item"><div dangerouslySetInnerHTML={{ __html: marked(post.content || '') }} /></div>
+              <div className="flex-item"><div dangerouslySetInnerHTML={{ __html: marked(post.cover_url || '') }} /></div>
+            </div>)}
+        </div>
       </div>
     );
   }

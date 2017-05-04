@@ -50,7 +50,7 @@ class NewPost extends Component {
       <div className="new-post-render">
         <h1 className="create-post">Create a post!</h1>
         <div className="new-form">
-          <form id="newNote" onSubmit={this.handleSubmit}>
+          <form id="new-note" onSubmit={this.handleSubmit}>
             <div className="flex-item"><input type="text" onChange={this.onTitleChange} value={this.state.title} /></div>
 
             <div className="flex-item"><input type="text" onChange={this.onTagsChange} value={this.state.tags} /></div>
@@ -59,7 +59,7 @@ class NewPost extends Component {
 
             <div className="flex-item"><input type="text" onChange={this.onCoverURLChange} value={this.state.cover_url} /></div>
 
-            <input type="submit" name="submit" value="Submit" onClick={this.handleSubmit} />
+            <input type="submit" name="submit" value="Create Post" onClick={this.handleSubmit} />
           </form>
         </div>
       </div>

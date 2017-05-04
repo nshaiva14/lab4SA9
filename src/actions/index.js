@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
-const API_KEY = '?key=Nikita_Shaiva';
+const API_KEY = '?key=Nikita_Shaiva2';
 
 // keys for actiontypes
 export const ActionTypes = {

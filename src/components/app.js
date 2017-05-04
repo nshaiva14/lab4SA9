@@ -24,7 +24,7 @@ const NavBar = (props) => {
   return (
     <nav>
       <div className="Home"><NavLink to="/" exact>All Posts</NavLink></div>
-      <div className="NewPost"><NavLink to="/posts/new">New Post</NavLink></div>
+      <div className="new-post"><NavLink to="/posts/new">New Post</NavLink></div>
     </nav>
   );
 };

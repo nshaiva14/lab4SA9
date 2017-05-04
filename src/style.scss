@@ -8,22 +8,65 @@
 
 }
 
-.NewPost {
+.new-post {
   border: 1px solid #999;
   border-radius: 1px;
   float: right;
   color: black;
   padding: 5px;
-  background-color: pink;
 }
 
+.blog {
+    text-align: center;
+    margin: 40px;
+}
 
+.update-post-render {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-item {
+  padding: 4px;
+}
 .createPost {
   color: pink;
   size: 40px;
 }
 
-.new-form {
+#trash{
+  padding: 5px;
+  size: 400%;
+}
+
+.posts-render{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 15px;
+}
+
+.new-post-render{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 15px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  justify-content: center;
+}
+
+.post{
+  border: 1px solid #999;
+  border-radius: 1px;
+  float: right;
+  color: black;
+  padding: 5px;
 }
