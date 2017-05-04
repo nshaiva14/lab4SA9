@@ -32,7 +32,6 @@ export function fetchPosts() {
 }
 
 export function createPost(post, history) {
-  console.log(post);
   return (dispatch) => {
     axios.post(`${ROOT_URL}/posts${API_KEY}`, post).then((response) => {
       history.push('/');
@@ -45,8 +44,11 @@ export function createPost(post, history) {
 
 
 export function updatePost(id, post) {
+  console.log(post);
+  console.log(id);
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/posts${API_KEY}`).then((response) => {
+    axios.put(`${ROOT_URL}/posts/${id}${API_KEY}`, post).then((response) => {
+      console.log({ response });
     }).catch((error) => {
       console.log(error);
     });

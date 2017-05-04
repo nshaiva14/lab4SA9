@@ -1,15 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
-// import GetPost from '../containers/getpost';
-import GetNewPost from '../containers/getnewpost';
-import GetPosts from '../containers/getposts';
-import GetPost from '../containers/getpost';
-
-
-// const PostC = (props) => {
-//   return (
-//     <div />);
-// };
+import NewPost from '../containers/newpost';
+import Posts from '../containers/posts';
+import Post from '../containers/post';
 
 const App = (props) => {
   return (
@@ -17,9 +10,9 @@ const App = (props) => {
       <div>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={GetPosts} />
-          <Route path="/posts/new" component={GetNewPost} />
-          <Route path="/posts/:postID" component={GetPost} />
+          <Route exact path="/" component={Posts} />
+          <Route path="/posts/new" component={NewPost} />
+          <Route path="/posts/:postID" component={Post} />
           <Route render={() => (<div>post not found </div>)} />
         </Switch>
       </div>
@@ -30,10 +23,8 @@ const App = (props) => {
 const NavBar = (props) => {
   return (
     <nav>
-      <ul>
-        <li><NavLink to="/" exact>All Posts</NavLink></li>
-        <li><NavLink to="/posts/new">New Post</NavLink></li>
-      </ul>
+      <div className="Home"><NavLink to="/" exact>All Posts</NavLink></div>
+      <div className="NewPost"><NavLink to="/posts/new">New Post</NavLink></div>
     </nav>
   );
 };

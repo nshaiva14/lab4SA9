@@ -19,6 +19,7 @@
         "no-else-return": 0,
         "new-cap": ["error", {"capIsNewExceptions": ["Router"]}],
         "no-console": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
         # "import/no-unresolved": [2, { "commonjs": true}],
         "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
         "no-underscore-dangle": 0,

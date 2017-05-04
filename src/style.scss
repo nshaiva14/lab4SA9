@@ -1,4 +1,29 @@
 
 .active {
+  color: blue;
+}
+
+
+.Home {
+
+}
+
+.NewPost {
+  border: 1px solid #999;
+  border-radius: 1px;
+  float: right;
+  color: black;
+  padding: 5px;
+  background-color: pink;
+}
+
+
+.createPost {
   color: pink;
+  size: 40px;
+}
+
+.new-form {
+  display: flex;
+  flex-direction: column;
 }

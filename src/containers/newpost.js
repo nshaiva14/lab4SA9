@@ -1,90 +1,78 @@
 import React, { Component } from 'react';
-import Textarea from 'react-textarea-autosize';
-import marked from 'marked';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { createPost } from '../actions/';
+import { createPost } from '../actions';
 
-
-// this can be dumb or smart component - connect works with either
 class NewPost extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isEditing: false,
-      title: '',
-      // tag: '',
-      // text: '',
-      // url: '',
-    };
-    // this.props.onTitleChange;
-    this.onEdit = this.onEdit.bind(this);
-    this.onDone = this.onDone.bind(this);
-    this.onWriteDB = this.onWriteDB.bind(this);
-    this.renderEditing = this.renderEditing.bind(this);
+    this.state = { title: '', tags: '', content: '', cover_url: '' };
+    this.onTitleChange = this.onTitleChange.bind(this);
+    this.onTagsChange = this.onTagsChange.bind(this);
+    this.onContentChange = this.onContentChange.bind(this);
+    this.onCoverURLChange = this.onCoverURLChange.bind(this);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onEdit() {
-    this.setState({
-      isEditing: true,
-      isEditingTitle: false,
-    });
-  }
-
-  onWriteText(event) {
+  onTitleChange(event) {
     this.setState({ title: event.target.value });
+    console.log(`on title change: ${event.target.value}`);
+    console.log(`this state previous title: ${this.state.title}`);
   }
 
-  handleSubmit() {
-    post: {
-      title: this.state.title,
-    };
-    this.props.createPost(post, this.props.history);
+  onTagsChange(event) {
+    this.setState({ tags: event.target.value });
+    console.log(`on tags change: ${event.target.value}`);
+    console.log(`this state previous tags: ${this.state.tags}`);
   }
 
-  newPost() {
+  onContentChange(event) {
+    this.setState({ content: event.target.value });
+    console.log(`on content change: ${event.target.value}`);
+    console.log(`this state previous content: ${this.state.content}`);
   }
 
-
-  renderEditing() {
-    if (this.state.isEditing) {
-      return (
-        <div><Textarea id="text" onChange={this.onWriteText} value={this.props.post.text} /></div>
-      );
-    } else {
-      console.log(this.props.note.text);
-      return (<div className="noteBody" dangerouslySetInnerHTML={{ __html: marked(this.props.post.text || '') }} />);
-    }
+  onCoverURLChange(event) {
+    this.setState({ cover_url: event.target.value });
+    console.log(`on cover_url change: ${event.target.value}`);
+    console.log(`this state previous cover_url: ${this.state.cover_url}`);
   }
 
+  handleSubmit(event) {
+    console.log(`A post was submitted: ${this.state.title} ${this.state.tags} ${this.state.content} ${this.state.cover_url}`);
+    this.props.createPost({ title: this.state.title, tags: this.state.tags, content: this.state.content, cover_url: this.state.cover_url }, this.props.history);
+    event.preventDefault();
+  }
 
   render() {
     return (
-      <div>
-        <h1> Create a new post </h1>
-        <form id="newNote" onSubmit={this.handleSubmit}>
-          <input type="text" onClick={this.onEdit} value={this.state.title.entry} />
-          <input type="submit" name="submit" value="Submit" />
+      <div className="new-post-render">
+        <h1 className="create-post">Create a post!</h1>
+        <div className="new-form">
+          <form id="newNote" onSubmit={this.handleSubmit}>
+            <div className="flex-item"><input type="text" onChange={this.onTitleChange} value={this.state.title} /></div>
 
-          //post should store post info
-          //history should store id of post
+            <div className="flex-item"><input type="text" onChange={this.onTagsChange} value={this.state.tags} /></div>
 
-          //on submit--take contents of note
-        </form>
-        <div>{this.renderEditing()}</div>
+            <div className="flex-item"><input type="text" onChange={this.onContentChange} value={this.state.content} /></div>
+
+            <div className="flex-item"><input type="text" onChange={this.onCoverURLChange} value={this.state.cover_url} /></div>
+
+            <input type="submit" name="submit" value="Submit" onClick={this.handleSubmit} />
+          </form>
+        </div>
       </div>
     );
   }
 }
+//
+// const mapStateToProps = state => (
+//   {
+//     posts = state.posts;
+//
+//   }
+// );
 
-// connects particular parts of redux state to this components props
-const mapStateToProps = state => (
-  {
-    title: state.title,
-  }
-);
 
-
-// react-redux glue -- outputs Container that know state in props
-// new way to connect with react router 4
-export default withRouter(connect(mapStateToProps, null)(NewPost));
+export default withRouter(connect(null, { createPost })(NewPost));
