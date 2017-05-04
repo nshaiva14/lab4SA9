@@ -85,7 +85,7 @@ class Post extends Component {
           </div>
           <div className="buttons">
             <input type="submit" name="submit" value="Save Post" onClick={this.handleSave} />
-            <div><i id="trash" className="fa fa-trash" aria-hidden="false" onClick={e => this.handleDeleteButtonPressed(this.props.match.params.postID)} /></div>
+            <div> <button type="button" onClick={e => this.handleDeleteButtonPressed(this.props.match.params.postID)}> Delete!</button></div>
           </div>
         </div>
 
@@ -105,7 +105,7 @@ class Post extends Component {
           </div>
           <div className="buttons">
             <input type="submit" name="submit" value="Save Post" onClick={this.handleSave} />
-            <div><i id="trash" className="fa fa-trash" aria-hidden="false" onClick={e => this.handleDeleteButtonPressed(this.props.match.params.postID)} /></div>
+            <div> <button type="button" onClick={e => this.handleDeleteButtonPressed(this.props.match.params.postID)}> Delete!</button></div>
           </div>
         </div>);
     }

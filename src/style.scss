@@ -4,7 +4,6 @@
   text-decoration: none;
 }
 
-
 a {
 text-decoration: none;
 }
@@ -46,6 +45,7 @@ text-decoration: none;
 
 .flex-item {
   padding: 4px;
+  margin: 3px;
 }
 .createPost {
   color: pink;
@@ -60,6 +60,7 @@ text-decoration: none;
 .posts-render{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin: 15px;
 }
