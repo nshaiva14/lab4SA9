@@ -75,13 +75,13 @@ class Post extends Component {
         <div>
           <div className="update-post-render">
             <h1 className="update-post">Update a post!</h1>
-            <div className="flex-item"><Textarea id="title" onChange={this.onTitleChange} value={this.state.title} /></div>
+            <div className="flex-item"><Textarea id="title" onChange={this.onTitleChange} value={this.state.title} placeholder="title" /></div>
 
-            <div className="flex-item"><Textarea id="tags" onChange={this.onTagsChange} value={this.state.tags} /></div>
+            <div className="flex-item"><Textarea id="tags" onChange={this.onTagsChange} value={this.state.tags} placeholder="tags" /></div>
 
-            <div className="flex-item"><Textarea id="content" onChange={this.onContentChange} value={this.state.content} /></div>
+            <div className="flex-item"><Textarea id="content" onChange={this.onContentChange} value={this.state.content} placeholder="content" /></div>
 
-            <div className="flex-item"><Textarea id="cover_url" onChange={this.onCoverURLChange} value={this.state.cover_url} /></div>
+            <div className="flex-item"><Textarea id="cover_url" onChange={this.onCoverURLChange} value={this.state.cover_url} placeholder="cover_url" /></div>
           </div>
           <div className="buttons">
             <input type="submit" name="submit" value="Save Post" onClick={this.handleSave} />
@@ -101,7 +101,7 @@ class Post extends Component {
 
             <div className="flex-item"><div id="contentdiv" onClick={() => this.setState({ isEditing: true })} dangerouslySetInnerHTML={{ __html: marked(this.state.content || '') }} /></div>
 
-            <div className="flex-item"><div id="cover_urldiv" onClick={() => this.setState({ isEditing: true })} dangerouslySetInnerHTML={{ __html: marked(this.state.cover_url || '') }} /></div>
+            <div className="flex-item"><img onClick={() => this.setState({ isEditing: true })} alt="cover_url" src={this.state.cover_url} /></div>
           </div>
           <div className="buttons">
             <input type="submit" name="submit" value="Save Post" onClick={this.handleSave} />

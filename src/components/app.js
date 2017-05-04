@@ -13,7 +13,7 @@ const App = (props) => {
           <Route exact path="/" component={Posts} />
           <Route path="/posts/new" component={NewPost} />
           <Route path="/posts/:postID" component={Post} />
-          <Route render={() => (<div>post not found </div>)} />
+          <Route render={() => (<h1>Post not found! </h1>)} />
         </Switch>
       </div>
     </Router>
@@ -23,8 +23,8 @@ const App = (props) => {
 const NavBar = (props) => {
   return (
     <nav>
-      <div className="Home"><NavLink to="/" exact>All Posts</NavLink></div>
-      <div className="new-post"><NavLink to="/posts/new">New Post</NavLink></div>
+      <div className="home"><NavLink id="nav" to="/" exact>All Posts</NavLink></div>
+      <div className="new-post"><NavLink id="nav" to="/posts/new">New Post</NavLink></div>
     </nav>
   );
 };

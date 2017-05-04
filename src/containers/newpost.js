@@ -51,13 +51,13 @@ class NewPost extends Component {
         <h1 className="create-post">Create a post!</h1>
         <div className="new-form">
           <form id="new-note" onSubmit={this.handleSubmit}>
-            <div className="flex-item"><input type="text" onChange={this.onTitleChange} value={this.state.title} /></div>
+            <div className="flex-item"><input type="text" onChange={this.onTitleChange} value={this.state.title} placeholder="title" /></div>
 
-            <div className="flex-item"><input type="text" onChange={this.onTagsChange} value={this.state.tags} /></div>
+            <div className="flex-item"><input type="text" onChange={this.onTagsChange} value={this.state.tags} placeholder="tags" /></div>
 
-            <div className="flex-item"><input type="text" onChange={this.onContentChange} value={this.state.content} /></div>
+            <div className="flex-item"><input type="text" onChange={this.onContentChange} value={this.state.content} placeholder="content" /></div>
 
-            <div className="flex-item"><input type="text" onChange={this.onCoverURLChange} value={this.state.cover_url} /></div>
+            <div className="flex-item"><input type="text" onChange={this.onCoverURLChange} value={this.state.cover_url} placeholder="cover_url" /></div>
 
             <input type="submit" name="submit" value="Create Post" onClick={this.handleSubmit} />
           </form>
