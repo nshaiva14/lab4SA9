@@ -9,7 +9,7 @@ class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
+      // title: '',
     };
     this.render = this.render.bind(this);
   }

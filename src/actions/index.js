@@ -79,9 +79,9 @@ export function deletePost(id, history) {
 }
 
 
-export function signinUser({ email, password }, history) {
+export function signinUser({ email, password, username }, history) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signin${API_KEY}`, { email, password }).then((response) => {
+    axios.post(`${ROOT_URL}/signin${API_KEY}`, { email, password, username }).then((response) => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
       history.push('/');
@@ -92,9 +92,9 @@ export function signinUser({ email, password }, history) {
 }
 
 
-export function signupUser({ email, password }, history) {
+export function signupUser({ email, password, username }, history) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signup${API_KEY}`, { email, password }).then((response) => {
+    axios.post(`${ROOT_URL}/signup${API_KEY}`, { email, password, username }).then((response) => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
       history.push('/');

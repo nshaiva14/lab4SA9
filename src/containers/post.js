@@ -9,7 +9,7 @@ import { fetchPost, deletePost, updatePost } from '../actions';
 class Post extends Component {
   constructor(props) {
     super(props);
-    this.state = { isEditing: false, id: props.match.params.postID, title: props.post.title, tags: props.post.tags, content: props.post.content, cover_url: props.post.cover_url };
+    this.state = { isEditing: false, id: props.match.params.postID, title: props.post.title, tags: props.post.tags, content: props.post.content, cover_url: props.post.cover_url, username: props.post.username };
     this.render = this.render.bind(this);
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onTagsChange = this.onTagsChange.bind(this);
@@ -26,7 +26,7 @@ class Post extends Component {
 
   componentWillReceiveProps(nextProps) {
     console.log(nextProps);
-    this.setState({ isEditing: false, title: nextProps.post.title, tags: nextProps.post.tags, content: nextProps.post.content, cover_url: nextProps.post.cover_url });
+    this.setState({ isEditing: false, title: nextProps.post.title, tags: nextProps.post.tags, content: nextProps.post.content, cover_url: nextProps.post.cover_url, username: nextProps.post.username });
   }
 
   onTitleChange(event) {
@@ -75,6 +75,7 @@ class Post extends Component {
         <div>
           <div className="update-post-render">
             <h1 className="update-post">Update a post!</h1>
+            <h4 className="username">By: {this.state.username}</h4>
             <div className="flex-item"><Textarea id="title" onChange={this.onTitleChange} value={this.state.title} placeholder="title" /></div>
 
             <div className="flex-item"><Textarea id="tags" onChange={this.onTagsChange} value={this.state.tags} placeholder="tags" /></div>
@@ -95,6 +96,7 @@ class Post extends Component {
         <div>
           <div className="update-post-render">
             <h1 className="update-post">Update a post!</h1>
+            <h4 className="username">By: {this.state.username}</h4>
             <div className="flex-item"><div id="titlediv" onClick={() => this.setState({ isEditing: true })} dangerouslySetInnerHTML={{ __html: marked(this.state.title || '') }} /></div>
 
             <div className="flex-item"><div id="tagsdiv" onClick={() => this.setState({ isEditing: true })} dangerouslySetInnerHTML={{ __html: marked(this.state.tags || '') }} /></div>

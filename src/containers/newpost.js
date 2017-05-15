@@ -66,13 +66,5 @@ class NewPost extends Component {
     );
   }
 }
-//
-// const mapStateToProps = state => (
-//   {
-//     posts = state.posts;
-//
-//   }
-// );
-
 
 export default withRouter(connect(null, { createPost })(NewPost));

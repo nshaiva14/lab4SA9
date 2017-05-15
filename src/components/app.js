@@ -6,6 +6,7 @@ import Post from '../containers/post';
 import SignInUser from '../containers/signinuser';
 import SignUpUser from '../containers/signupuser';
 import NavBar from './navbar';
+import RequireAuth from '../containers/requireAuth';
 
 const App = (props) => {
   return (
@@ -14,7 +15,7 @@ const App = (props) => {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Posts} />
-          <Route path="/posts/new" component={NewPost} />
+          <Route path="/posts/new" component={RequireAuth(NewPost)} />
           <Route path="/posts/:postID" component={Post} />
           <Route path="/signin" component={SignInUser} />
           <Route path="/signup" component={SignUpUser} />
