@@ -1,8 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NewPost from '../containers/newpost';
 import Posts from '../containers/posts';
 import Post from '../containers/post';
+import SignInUser from '../containers/signinuser';
+import SignUpUser from '../containers/signupuser';
+import NavBar from './navbar';
 
 const App = (props) => {
   return (
@@ -13,27 +16,14 @@ const App = (props) => {
           <Route exact path="/" component={Posts} />
           <Route path="/posts/new" component={NewPost} />
           <Route path="/posts/:postID" component={Post} />
+          <Route path="/signin" component={SignInUser} />
+          <Route path="/signup" component={SignUpUser} />
           <Route render={() => (<h1>Post not found! </h1>)} />
         </Switch>
       </div>
     </Router>
   );
 };
-
-const NavBar = (props) => {
-  return (
-    <nav>
-      <div className="home"><NavLink id="nav" to="/" exact>All Posts</NavLink></div>
-      <div className="new-post"><NavLink id="nav" to="/posts/new">New Post</NavLink></div>
-    </nav>
-  );
-};
-
-// componentDidMount() {
-//   firebasedb.fetchNotes((notes) => {
-//     this.setState({ notes: Immutable.Map(notes) });
-//   });
-// }
 
 
 export default App;
