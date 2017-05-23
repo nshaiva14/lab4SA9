@@ -14,6 +14,7 @@
         "react/jsx-filename-extension": 0,
         "import/no-unresolved": [2, { "commonjs": true, "caseSensitive": false}],
         # "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "import/prefer-default-export": 0,
         "strict": 0,
         "quotes": [2, "single"],
         "no-else-return": 0,

@@ -4,17 +4,18 @@ import marked from 'marked';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchPost, deletePost, updatePost } from '../actions';
+import { uploadImage } from '../s3';
 
 
 class Post extends Component {
   constructor(props) {
     super(props);
-    this.state = { isEditing: false, id: props.match.params.postID, title: props.post.title, tags: props.post.tags, content: props.post.content, cover_url: props.post.cover_url, username: props.post.username };
+    this.state = { isEditing: false, id: props.match.params.postID, title: props.post.title, tags: props.post.tags, content: props.post.content, preview: props.post.preview, username: props.post.username };
     this.render = this.render.bind(this);
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onTagsChange = this.onTagsChange.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
-    this.onCoverURLChange = this.onCoverURLChange.bind(this);
+    this.onImageUpload = this.onImageUpload.bind(this);
 
     this.handleSave = this.handleSave.bind(this);
     this.handleDeleteButtonPressed = this.handleDeleteButtonPressed.bind(this);
@@ -26,7 +27,7 @@ class Post extends Component {
 
   componentWillReceiveProps(nextProps) {
     console.log(nextProps);
-    this.setState({ isEditing: false, title: nextProps.post.title, tags: nextProps.post.tags, content: nextProps.post.content, cover_url: nextProps.post.cover_url, username: nextProps.post.username });
+    this.setState({ isEditing: false, title: nextProps.post.title, tags: nextProps.post.tags, content: nextProps.post.content, preview: nextProps.post.preview, username: nextProps.post.username });
   }
 
   onTitleChange(event) {
@@ -47,17 +48,32 @@ class Post extends Component {
     console.log(`this state previous content: ${this.state.content}`);
   }
 
-  onCoverURLChange(event) {
-    this.setState({ isEditing: true, cover_url: event.target.value });
-    console.log(`on cover_url change: ${event.target.value}`);
-    console.log(`this state previous cover_url: ${this.state.cover_url}`);
+  // onCoverURLChange(event) {
+  //   this.setState({ isEditing: true, preview: event.target.value });
+  //   console.log(`on cover_url change: ${event.target.value}`);
+  //   console.log(`this state previous cover_url: ${this.state.preview}`);
+  // }
+  onImageUpload(event) {
+    console.log('image uploading');
+    const file = event.target.files[0];
+    // Handle null file
+    // Get url of the file and set it to the src of preview
+
+    if (file) {
+      uploadImage(file).then((url) => {
+        this.setState({ preview: url });
+        console.log(`adding image: ${url}`);
+      }).catch((error) => {
+        console.log('error!please add image');
+      });
+    }
   }
 
   handleSave(event) {
     console.log(this.state.title);
     console.log(this.props.match.params.postID);
-    console.log(`A post was submitted: ${this.state.title} ${this.state.tags} ${this.state.content} ${this.state.cover_url}`);
-    this.props.updatePost(this.props.match.params.postID, { title: this.state.title, tags: this.state.tags, content: this.state.content, cover_url: this.state.cover_url });
+    console.log(`A post was submitted: ${this.state.title} ${this.state.tags} ${this.state.content} ${this.state.preview}`);
+    this.props.updatePost(this.props.match.params.postID, { title: this.state.title, tags: this.state.tags, content: this.state.content, preview: this.state.preview });
     event.preventDefault();
     this.setState({ isEditing: false });
   }
@@ -67,6 +83,8 @@ class Post extends Component {
     console.log('delete button');
     event.preventDefault();
   }
+
+  // <div className="flex-item"><Textarea id="cover_url" onChange={this.onCoverURLChange} value={this.state.cover_url} placeholder="cover_url" /></div>
 
   render() {
     console.log(this.state);
@@ -82,7 +100,9 @@ class Post extends Component {
 
             <div className="flex-item"><Textarea id="content" onChange={this.onContentChange} value={this.state.content} placeholder="content" /></div>
 
-            <div className="flex-item"><Textarea id="cover_url" onChange={this.onCoverURLChange} value={this.state.cover_url} placeholder="cover_url" /></div>
+            <div className="flex-item"><img id="preview" alt="preview" src={this.state.preview} /></div>
+            <div className="flex-item"><input type="file" name="coverImage" onChange={this.onImageUpload} /></div>
+
           </div>
           <div className="buttons">
             <input type="submit" name="submit" value="Save Post" onClick={this.handleSave} />
@@ -91,6 +111,12 @@ class Post extends Component {
         </div>
 
       );
+      // <div className="flex-item"><img id="preview" alt="preview" src={this.state.preview} /></div>
+      // <div className="flex-item"><input type="file" name="coverImage" onChange={this.onImageUpload} /></div>
+
+      // <img id="preview" alt="preview" src={this.state.preview} />
+      // <input type="file" name="coverImage" onChange={this.onImageUpload} />
+      //
     } else {
       return (
         <div>
@@ -103,7 +129,9 @@ class Post extends Component {
 
             <div className="flex-item"><div id="contentdiv" onClick={() => this.setState({ isEditing: true })} dangerouslySetInnerHTML={{ __html: marked(this.state.content || '') }} /></div>
 
-            <div className="flex-item"><img onClick={() => this.setState({ isEditing: true })} alt="cover_url" src={this.state.cover_url} /></div>
+
+            <div className="flex-item"><img onClick={() => this.setState({ isEditing: true })} alt="preview" src={this.state.preview} /></div>
+
           </div>
           <div className="buttons">
             <input type="submit" name="submit" value="Save Post" onClick={this.handleSave} />

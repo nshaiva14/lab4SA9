@@ -29,7 +29,7 @@ class Posts extends Component {
                 <div className="flex-item"><div dangerouslySetInnerHTML={{ __html: marked(post.title || '') }} /></div>
                 <div className="flex-item"><div dangerouslySetInnerHTML={{ __html: marked(post.tags || '') }} /></div>
                 <div className="flex-item"><div dangerouslySetInnerHTML={{ __html: marked(post.content || '') }} /></div>
-                <div className="flex-item"><img alt="cover_url" src={post.cover_url} /></div>
+                <div className="flex-item"><img alt="preview" src={post.preview} /></div>
               </a>
             </div>)}
         </div>
