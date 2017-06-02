@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const ROOT_URL = 'https://lab5-sa9-nshaiva14.herokuapp.com/api';
+export const ROOT_URL = 'https://lab5-nshaiva14.herokuapp.com/api';
 // export const ROOT_URL = 'http://localhost:9090/api';
 const API_KEY = '?key=Nikita_Shaiva2';
 

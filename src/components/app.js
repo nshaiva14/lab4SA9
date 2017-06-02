@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NewPost from '../containers/newpost';
@@ -6,7 +7,8 @@ import Post from '../containers/post';
 import SignInUser from '../containers/signinuser';
 import SignUpUser from '../containers/signupuser';
 import NavBar from './navbar';
-import RequireAuth from '../containers/requireAuth';
+import
+ RequireAuth from '../containers/requireAuth';
 
 const App = (props) => {
   return (

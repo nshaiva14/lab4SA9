@@ -64,7 +64,7 @@ class Post extends Component {
         this.setState({ preview: url });
         console.log(`adding image: ${url}`);
       }).catch((error) => {
-        console.log('error!please add image');
+        console.log(`error!please add image ${file}`);
       });
     }
   }
